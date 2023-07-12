@@ -12,7 +12,7 @@ df2 = pd.read_csv(f"data/output/{FILE_2}")
 combined_df = pd.concat([df1, df2], ignore_index=True)
 
 SEED_VALUE = 42
-random.seed(SEED_VALUE)
+# random.seed(SEED_VALUE)
 # Shuffle the rows randomly
 combined_df = combined_df.sample(frac=1)
 
