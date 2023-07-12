@@ -140,8 +140,6 @@ tensors = []
 # Iterate over the individual frames
 for index, frame in enumerate(frames):
     adjacency_matrix, edge_info_matrix = create_adjacency_matrix_with_meta_information(frame)
-    if index == 50:
-        print(edge_info_matrix)
     edge_info_matrix = edge_info_matrix.applymap(get_a_unique_number)
     tensor_2 = edge_info_matrix.values
     tensors.append(tensor_2)

@@ -145,11 +145,25 @@ fp = cm_percentage[0, 1]
 fn = cm_percentage[1, 0]
 
 training_accuracy_with_frame_size_dict = pickle.load(open('training_accuracy_with_frame_size_dict.pkl', 'rb')) if isfile('training_accuracy_with_frame_size_dict.pkl') else {}
-training_accuracy_with_frame_size_dict[SECONDS_FOR_FRAME] = {
-    "TestingAccuracy": test_accuracy,
-    "FP": fp,
-    "FN": fn
-}
+if f'{SECONDS_FOR_FRAME}_1' not in training_accuracy_with_frame_size_dict:
+    training_accuracy_with_frame_size_dict[f'{SECONDS_FOR_FRAME}_1'] = {
+        "TestingAccuracy": test_accuracy,
+        "FP": fp,
+        "FN": fn
+    }
+elif f'{SECONDS_FOR_FRAME}_2' not in training_accuracy_with_frame_size_dict:
+    training_accuracy_with_frame_size_dict[f'{SECONDS_FOR_FRAME}_2'] = {
+        "TestingAccuracy": test_accuracy,
+        "FP": fp,
+        "FN": fn
+    }
+else:
+    training_accuracy_with_frame_size_dict[f'{SECONDS_FOR_FRAME}_3'] = {
+        "TestingAccuracy": test_accuracy,
+        "FP": fp,
+        "FN": fn
+    }
+
 # Serialize the dictionary to a file
 with open('training_accuracy_with_frame_size_dict.pkl', 'wb') as file:
     pickle.dump(training_accuracy_with_frame_size_dict, file)
