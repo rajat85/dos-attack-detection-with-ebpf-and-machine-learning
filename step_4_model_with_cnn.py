@@ -82,16 +82,16 @@ model.add(Flatten())
 model.add(Dense(64, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 # # # Step 3: Compile the model
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 # # # Step 4: Train the model
 epochs = 31
 batch_size = 32
 history = model.fit(train_data, train_labels, epochs=epochs, batch_size=batch_size, validation_split=0.1)
 
-
+color_palette = plt.get_cmap('tab10')
 # Plot training and validation loss
-plt.plot(history.history['loss'], label='Training Loss')
-plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.plot(history.history['loss'], linestyle=':', marker='o', color='blue', label='Training Loss')
+plt.plot(history.history['val_loss'], linestyle='-', marker=None, color='blue', label='Validation Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.title('Training and Validation Loss')
@@ -102,8 +102,8 @@ plt.show()
 train_accuracy = history.history['accuracy']
 validation_accuracy = history.history['val_accuracy']
 plt.figure()
-plt.plot(train_accuracy, label='Training Accuracy')
-plt.plot(validation_accuracy, label='Validation Accuracy')
+plt.plot(train_accuracy, linestyle=':', marker='o', color='blue', label='Training Accuracy')
+plt.plot(validation_accuracy, linestyle='-', marker=None, color='blue', label='Validation Accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.title('Training and Validation Accuracy')
